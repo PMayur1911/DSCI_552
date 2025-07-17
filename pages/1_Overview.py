@@ -64,27 +64,3 @@ bar_chart = alt.Chart(w_classes_df).mark_bar(opacity=0.75).encode(
 st.altair_chart(bar_chart)
 
 st.write("TBD - Write about Train/Val/Test Splits")
-
-st.divider()
-
-
-# --------- Dataset Augmentation -------------
-st.header("Dataset Image Augmentation")
-img_aug = ["Image Crop", "Image Zoom", "Image Rotation", "Image Flip", "Image Constrast", "Image Translation"]
-st.write(
-    """
-    A common practise in Image Classification tasks is to augment the images in the dataset to generate similar looking images and expand the dataset to help the model improve its generalisation capabilities.
-    Here, the following image augmentation techniques were applied - 
-    """
-)
-# st.write(img_aug)
-
-# st.divider()
-
-w_aug_cols = st.columns(3, gap='large', vertical_alignment='center')
-for idx, aug in enumerate(img_aug):
-    with w_aug_cols[idx % 3]:
-        with st.expander(f"{aug}"):
-            st.write("Lorem Ipsum about the Image Augmentation Technique")
-        # w_class, icon, color = row["classes"], row["icons"], row["colors"]
-        # st.badge(f"{icon} {w_class}", color=color, width='stretch')
