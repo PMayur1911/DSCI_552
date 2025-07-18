@@ -1,186 +1,150 @@
 import streamlit as st
 
-st.title("Model & Training Details")
+st.set_page_config(
+    page_title="Model & Training",
+    initial_sidebar_state='expanded',
+    layout='wide'
+)
+
+st.sidebar.markdown("## :material/folder_open: Model & Training Details")
+st.sidebar.markdown("""
+:material/subdirectory_arrow_right: Model Architectures
+
+> :material/subdirectory_arrow_right: Pre-Trained Models
+
+> :material/subdirectory_arrow_right: Comprehensive Model Details
+
+                    
+:material/subdirectory_arrow_right: Transfer Learning Strategy
+
+> :material/subdirectory_arrow_right: Transfer Learning Approach
+
+> :material/subdirectory_arrow_right: Custom Classification Head Arch
+
+                    
+:material/subdirectory_arrow_right: Training Environment
+                    
+> :material/subdirectory_arrow_right: Hardware & Runtime Environment
+
+> :material/subdirectory_arrow_right: Training Config and Hyper-Parameters
+
+>> :material/subdirectory_arrow_right: General Settings
+
+>> :material/subdirectory_arrow_right: Optimizers/ Regularization
+
+>> :material/subdirectory_arrow_right: Callbacks
+
+>> :material/subdirectory_arrow_right: Augmentation
+""")
+
+
+st.title("Model & Training")
+
+# Custom style for subtle accent
+st.markdown("""
+    <style>
+    [data-testid="stExpander"] > details[open] {
+        border: 2px solid #1f77b4;
+        border-radius: 6px;
+        padding: 10px;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 tab1, tab2, tab3 = st.tabs(["Model Architectures", "Transfer Learning Strategy", "Training Environment"])
 
 ###################################################
-# --------- Model Architecture -------------
+# --------- Model Architectures Tab -------------
 ###################################################
 with tab1:
-    st.subheader("Pre-Trained Models")
-    st.write(
-        """
-        The following pre-trained Computer Vision (CV) models were utilized for the waste classification task.
-        Each model contributes unique strengths, enabling a comprehensive performance comparison.
-        """
-    )
+    st.subheader(":blue[:material/category:] Pre-Trained Models")
+    st.write("""
+    The following pre-trained Computer Vision (CV) models were utilized for this project.
+    Each model brings unique architectural features and design philosophies to image recognition.
+    """)
 
-    model_cols = st.columns(2, gap='small', vertical_alignment='center')
+    model_cols = st.columns(2)
     for idx in range(4):
         with model_cols[idx % 2]:
             if idx == 0:
-                st.info("###### :material/speed: EfficientNetB0")
+                st.info(":material/speed: **EfficientNetB0**")
             elif idx == 1:
-                st.success("###### :material/check_circle: ResNet-50")
+                st.success(":material/check_circle: **ResNet-50**")
             elif idx == 2:
-                st.warning("###### :material/storage: ResNet-101")
+                st.warning(":material/storage: **ResNet-101**")
             else:
-                st.error("###### :material/bug_report: VGG-16")
-    st.divider()
-
-    st.subheader("Comprehensive Pre-Trained Model Details")
-
-    # --------- EfficientNetB0 ----------
-    st.info("###### :material/speed: EfficientNetB0")
-    st.write(
-        """
-        Lightweight and optimized for efficiency, making it ideal for real-time inference on resource-constrained devices.
-        """
-    )
-    with st.expander(":material/settings: View Detailed Specifications for EfficientNetB0"):
-        st.markdown(
-            """
-            **Architecture:**  
-            - Compound scaling of depth, width, and resolution.  
-            - Efficient feature extraction with fewer parameters than traditional CNNs.  
-
-            **Strengths:**  
-            - State-of-the-art accuracy for its size.  
-            - Excellent for edge deployment and fast inference.  
-
-            **Trade-offs:**  
-            - Slightly lower peak accuracy compared to larger, deeper models.  
-
-            **Paper:** *EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks*  
-            """
-        )
-        st.write("**Model Parameter Summary:**")
-        st.table({
-            "Parameter Type": ["Total Parameters", "Trainable Parameters", "Non-Trainable Parameters"],
-            "Count": ["4,380,844", "330,761", "4,050,083"]
-        })
-    st.divider()
-
-    # --------- ResNet-50 ----------
-    st.success("###### :material/check_circle: ResNet-50")
-    st.write(
-        """
-        A widely-used deep CNN with residual connections that facilitates training deeper networks while maintaining strong generalization.
-        """
-    )
-    with st.expander(":material/settings: View Detailed Specifications for ResNet-50"):
-        st.markdown(
-            """
-            **Architecture:**  
-            - 50-layer deep convolutional network with residual (skip) connections.  
-
-            **Strengths:**  
-            - Balanced accuracy and efficiency.  
-            - Robust performance for complex image classification tasks.  
-
-            **Trade-offs:**  
-            - Moderate memory and compute requirements.  
-
-            **Paper:** *Deep Residual Learning for Image Recognition*, Kaiming He et al.  
-            """
-        )
-        st.write("**Model Parameter Summary:**")
-        st.table({
-            "Parameter Type": ["Total Parameters", "Trainable Parameters", "Non-Trainable Parameters"],
-            "Count": ["24,115,593", "527,369", "23,588,224"]
-        })
+                st.error(":material/bug_report: **VGG-16**")
 
     st.divider()
 
-    # --------- ResNet-101 ----------
-    st.warning("###### :material/storage: ResNet-101")
-    st.write(
-        """
-        A deeper variant of ResNet-50, capable of capturing more complex features, with increased computational demands.
-        """
-    )
-    with st.expander(":material/settings: View Detailed Specifications for ResNet-101"):
-        st.markdown(
-            """
-            **Architecture:**  
-            - 101-layer deep CNN with stacked residual blocks.  
+    st.subheader(":blue[:material/info:] Comprehensive Pre-Trained Model Details")
 
-            **Strengths:**  
-            - Enhanced feature learning for fine-grained classification.  
-            - Higher potential accuracy on complex datasets.  
+    # -------- EfficientNetB0 --------
+    st.info(":material/speed: **EfficientNetB0**")
+    st.write("""
+    EfficientNetB0 is a compact convolutional neural network introduced as part of the EfficientNet family,  
+    designed around compound scaling principles to achieve high accuracy with fewer parameters and FLOPs.
+    
+    - **Architecture highlights:** Compound scaling of width, depth, and resolution using a scaling coefficient.  
+    - **Strengths:** Excellent accuracy-efficiency tradeoff; ideal for deployment on resource-constrained devices.
+    - **Paper:** *EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks* (M. Tan & Q.V. Le)
+    """)
 
-            **Trade-offs:**  
-            - Significantly higher parameter count and resource requirements.  
+    # -------- ResNet-50 --------
+    st.success(":material/check_circle: **ResNet-50**")
+    st.write("""
+    ResNet-50 is a 50-layer deep residual network introducing **skip connections** to mitigate vanishing gradients, enabling the training of very deep CNNs.
 
-            **Paper:** *Deep Residual Learning for Image Recognition*, Kaiming He et al.  
-            """
-        )
-        st.write("**Model Parameter Summary:**")
-        st.table({
-            "Parameter Type": ["Total Parameters", "Trainable Parameters", "Non-Trainable Parameters"],
-            "Count": ["43,713,929", "1,054,729", "42,659,200"]
-        })
+    - **Architecture highlights:** Bottleneck residual blocks; 50 weight layers; skip connections.
+    - **Strengths:** Robust general-purpose architecture; widely adopted baseline for vision tasks.
+    - **Paper:** *Deep Residual Learning for Image Recognition* (K. He et al.)
+    """)
 
-    st.divider()
+    # -------- ResNet-101 --------
+    st.warning(":material/storage: **ResNet-101**")
+    st.write("""
+    ResNet-101 extends ResNet-50 to 101 layers, deepening the network to capture more complex patterns while retaining the benefits of residual learning.
 
-    # --------- VGG-16 ----------
-    st.error("###### :material/bug_report: VGG-16")
-    st.write(
-        """
-        A classic CNN known for its simplicity and uniform architecture, still effective for transfer learning despite being parameter-heavy.
-        """
-    )
-    with st.expander(":material/settings: View Detailed Specifications for VGG-16"):
-        st.markdown(
-            """
-            **Architecture:**  
-            - 16-layer CNN with small (3x3) convolutional filters stacked in depth.  
+    - **Architecture highlights:** 101 layers with stacked residual blocks; deeper variant of ResNet-50.
+    - **Strengths:** Higher representational capacity; competitive performance on fine-grained tasks.
+    - **Trade-offs:** Increased compute and memory usage compared to ResNet-50.
+    - **Paper:** *Deep Residual Learning for Image Recognition* (K. He et al.)
+    """)
 
-            **Strengths:**  
-            - Straightforward design ideal for educational purposes and feature extraction.  
+    # -------- VGG-16 --------
+    st.error(":material/bug_report: **VGG-16**")
+    st.write("""
+    VGG-16 is a classic architecture using a stack of 3x3 convolutions and max-pooling layers,  
+    known for its simplicity and uniform design.
 
-            **Trade-offs:**  
-            - Large parameter count relative to modern alternatives.  
-            - Computationally expensive.  
-
-            **Paper:** *Very Deep Convolutional Networks for Large-Scale Image Recognition*, Simonyan & Zisserman.  
-            """
-        )
-        st.write("**Model Parameter Summary:**")
-        st.table({
-            "Parameter Type": ["Total Parameters", "Trainable Parameters", "Non-Trainable Parameters"],
-            "Count": ["14,849,353", "134,153", "14,715,200"]
-        })
-
-    st.divider()
-
+    - **Architecture highlights:** 16 weighted layers; repeated 3x3 conv filters; no residuals or modern enhancements.
+    - **Strengths:** Intuitive structure; effective as a feature extractor.
+    - **Trade-offs:** Large number of parameters; computationally expensive relative to accuracy.
+    - **Paper:** *Very Deep Convolutional Networks for Large-Scale Image Recognition* (K. Simonyan & A. Zisserman)
+    """)
 
 ###################################################
-# --------- Transfer Learning Strategy-------------
+# --------- Transfer Learning Tab -------------
 ###################################################
 with tab2:
-    
-    st.subheader("Transfer Learning")
+    st.subheader(":green[:material/swap_vert:] Transfer Learning Approach")
 
-    st.write(
-        """
-        Transfer learning enables leveraging the knowledge from large-scale datasets like ImageNet, allowing efficient adaptation to domain-specific tasks such as waste classification.
-        
-        In this project, transfer learning was applied systematically to build robust, efficient models:
-        """
-    )
+    st.write("""
+    Transfer learning enables leveraging rich features learned by large-scale ImageNet pre-trained models, 
+    adapting them for domain-specific tasks like waste image classification.
 
-    st.markdown(
-        """
-        **Step 1:** Load pre-trained ImageNet models (`include_top=False`) to serve as frozen feature extractors.  
-        **Step 2:** Apply a custom `PreProcessingLayer` to ensure model-specific input scaling.  
-        **Step 3:** Add a lightweight, regularized custom-classification head tailored for our 9 waste categories.  
-        **Step 4:** Fine-tune only the final classification head to adapt the model to the dataset.  
-        """
-    )
+    **Pipeline used:**
+    """)
+    st.markdown("""
+    - **Step 1:** Load ImageNet-pretrained backbone (`include_top=False`) for frozen feature extraction.  
+    - **Step 2:** Apply custom `PreProcessingLayer` ensuring input normalization/scaling consistent with pretrained backbone.  
+    - **Step 3:** Attach a lightweight classification head tailored for 9 waste categories.  
+    - **Step 4:** Train only the classification head; backbone weights remain frozen.
+    """)
+
     st.divider()
-    
-    st.subheader("Custom-Classification Head Architecture")
+
+    st.subheader(":green[:material/design_services:] Custom Classification Head Architecture")
     st.markdown("The following classification head was adopted on top of the pre-trained models for the Transfer Learning task:")
     st.markdown(
         """
@@ -210,8 +174,7 @@ with tab2:
     st.divider()
 
     st.write("""
-    Below is a step-wise breakdown of the classification head added on top of each pre-trained model.
-    Click on each component to view its technical details and purpose.
+    Below is a step-wise breakdown of the layers of the classification head as illustrated above.
     """)
 
     d_cols = st.columns(2)
@@ -272,12 +235,11 @@ with tab2:
             Softmax activation converts the raw logits into a probability distribution over the classes.
             """)
 
-
-#############################################################
-# --------- Hyper-Parameters & Training Details -------------
-#############################################################
+###################################################
+# --------- Training Environment Tab -------------
+###################################################
 with tab3:
-    st.subheader("Hardware & Runtime Environment")
+    st.subheader(":orange[:material/settings_suggest:] Hardware & Runtime Environment")
     st.markdown("""
     - **Training Location:**  Macbook Pro, Kaggle Notebooks
     - **Hardware:**  
@@ -289,18 +251,20 @@ with tab3:
         - TensorFlow: `2.18.0`  
         - sklearn: `1.2.2`  
     """)
-    
+
     st.divider()
 
-    st.subheader("Training Config and Hyper-Parameters")
-    ctab1, ctab2, ctab3, ctab4 = st.tabs(["Training Parameters", "Optimizer and Regularizer", "Callbacks", "Data Augmentation"])
+    st.subheader(":orange[:material/tune:] Training Config & Hyperparameters")
+    hp1, hp2, hp3, hp4 = st.tabs([
+        "General Settings", "Optimizer/Regularization", "Callbacks", "Augmentation"
+    ])
 
-    with ctab1:
+    with hp1:
         st.markdown("""
         - **Input Image Size:**  
             - Raw Image: 524 x 524  
             - Augmented Image: 224 x 224 x 3  
-        - **Batch Size:** 5  
+        - **Batch Size:** 5 samples
         - **Epochs:** 100 (with early stopping based on validation loss)  
         - **Total Images:**  
             - Train-set Images: 6068 samples (original + augmented)  
@@ -308,7 +272,7 @@ with tab3:
         - **Total Waste Categories:** 9  
         """)
     
-    with ctab2:
+    with hp2:
         st.markdown("""
         - **Optimizer:** Adam with learning rate `1e-4`; Exponential Moving Average (EMA) enabled  
         - **Loss Function:** Categorical Cross-Entropy  
@@ -321,7 +285,7 @@ with tab3:
             - **Softmax** Activation for final FC-Layer  
         """)
     
-    with ctab3:
+    with hp3:
         st.write("The following training callbacks were set to monitor and modify/adjust the model training process at specific points during training")
         st.markdown("""
         - **`ReduceLROnPlateau`**: Reduces LR by a _factor_ of **`0.4`** if no improvement for _patience_ of **5 epochs**. Minimum LR is set to `1e-6`.  
@@ -329,7 +293,7 @@ with tab3:
         - **`ModelCheckpoint`**: Saves the model's weights during training, typically to preserve the best-performing version.  
         """)
     
-    with ctab4:
+    with hp4:
         st.write("To enhance generalization, the following image augmentation techniques were applied to the dataset before training. This expanded the dataset at hand (original + augmented) for better model training")
         aug_configs = {
             "Random Crop": {

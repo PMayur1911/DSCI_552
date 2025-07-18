@@ -2,13 +2,29 @@ import streamlit as st
 import pandas as pd
 
 from data.store import ModelStore
-from utils.radar_plot import radar_chart
+from utils.plotting import radar_chart
 from utils.summary_metrics import get_summary_metrics
 
 st.set_page_config(
     page_title="Performance & Results Overview",
-    initial_sidebar_state='expanded'
+    initial_sidebar_state='expanded',
+    layout='centered'
 )
+
+st.sidebar.markdown("## :material/folder_open: Performance & Results")
+st.sidebar.markdown("""
+:material/subdirectory_arrow_right: EfficientNetB0
+
+:material/subdirectory_arrow_right: ResNet-50
+
+:material/subdirectory_arrow_right: ResNet-101
+
+:material/subdirectory_arrow_right: VGG-16
+
+:material/subdirectory_arrow_right: Overall Model Comparison
+""")
+
+
 st.title("Performance & Results Overview")
 
 models = [
@@ -18,7 +34,7 @@ models = [
     ModelStore("VGG16"),
 ]
 
-tabs = st.tabs([x.model_name for x in models] + ["Overall Comparison"])
+tabs = st.tabs([x.model_name for x in models] + ["Overall Model Comparison"])
 
 # Custom style for subtle accent
 st.markdown("""
@@ -27,17 +43,6 @@ st.markdown("""
         border: 2px solid #1f77b4;
         border-radius: 6px;
         padding: 10px;
-    }
-    .st-emphasis {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-radius: 0.5rem;
-        padding: 0.5rem;
-        margin: 0.5rem 0;
-    }
-    hr.custom-hr {
-        border: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        margin: 1rem 0;
     }
     </style>
 """, unsafe_allow_html=True)
