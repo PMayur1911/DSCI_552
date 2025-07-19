@@ -88,6 +88,7 @@ with tab1:
     - **Architecture highlights:** Compound scaling of width, depth, and resolution using a scaling coefficient.  
     - **Strengths:** Excellent accuracy-efficiency tradeoff; ideal for deployment on resource-constrained devices.
     - **Paper:** *EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks* (M. Tan & Q.V. Le)
+    - **[Download Model here](https://storage.googleapis.com/keras-applications/efficientnetb0_notop.h5)**
     """)
 
     # -------- ResNet-50 --------
@@ -98,6 +99,7 @@ with tab1:
     - **Architecture highlights:** Bottleneck residual blocks; 50 weight layers; skip connections.
     - **Strengths:** Robust general-purpose architecture; widely adopted baseline for vision tasks.
     - **Paper:** *Deep Residual Learning for Image Recognition* (K. He et al.)
+    - **[Download Model here](https://storage.googleapis.com/tensorflow/keras-applications/resnet/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5)**
     """)
 
     # -------- ResNet-101 --------
@@ -109,18 +111,19 @@ with tab1:
     - **Strengths:** Higher representational capacity; competitive performance on fine-grained tasks.
     - **Trade-offs:** Increased compute and memory usage compared to ResNet-50.
     - **Paper:** *Deep Residual Learning for Image Recognition* (K. He et al.)
+    - **[Download Model here](https://storage.googleapis.com/tensorflow/keras-applications/resnet/resnet101_weights_tf_dim_ordering_tf_kernels_notop.h5)**
     """)
 
     # -------- VGG-16 --------
     st.error(":material/bug_report: **VGG-16**")
     st.write("""
-    VGG-16 is a classic architecture using a stack of 3x3 convolutions and max-pooling layers,  
-    known for its simplicity and uniform design.
+    VGG-16 is a classic architecture using a stack of 3x3 convolutions and max-pooling layers, known for its simplicity and uniform design.
 
     - **Architecture highlights:** 16 weighted layers; repeated 3x3 conv filters; no residuals or modern enhancements.
     - **Strengths:** Intuitive structure; effective as a feature extractor.
     - **Trade-offs:** Large number of parameters; computationally expensive relative to accuracy.
     - **Paper:** *Very Deep Convolutional Networks for Large-Scale Image Recognition* (K. Simonyan & A. Zisserman)
+    - **[Download Model here](https://storage.googleapis.com/tensorflow/keras-applications/vgg16/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5)**
     """)
 
 ###################################################

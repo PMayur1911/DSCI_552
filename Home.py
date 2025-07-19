@@ -20,10 +20,16 @@ st.sidebar.markdown("""
 
 # --- Title ---
 st.title(":blue[:material/home:] Transfer Learning for Multi-Class Waste Classification")
-st.markdown('Implemented by '
-    '[Mayur Prasanna](https://www.linkedin.com/in/pmayur19/) - '
-    'view project source code on '
-    '[GitHub](http://www.blankwebsite.com/)')
+st.markdown("""
+- Developed by [Mayur Prasanna](https://www.linkedin.com/in/pmayur19/)
+- View project source on [GitHub](http://www.blankwebsite.com/)
+""")
+
+# st.markdown('- Developed by '
+#     '[Mayur Prasanna](https://www.linkedin.com/in/pmayur19/) '
+
+#     '- View project source code on '
+#     '[GitHub](http://www.blankwebsite.com/)')
 
 st.divider()
 
@@ -80,9 +86,10 @@ with cols[0]:
     st.markdown("""
     This dashboard has a few dedicated pages you can explore:
 
-    - **Overview:** Dataset, objectives, and how I approached the problem.
-    - **Model & Training Details:** Pre-Trained architectures, transfer learning strategy, and training environment and setup.
-    - **Performance & Results Overview:** Evaluation Metrics per model per train/val/test set, visualizations, and comparison across the board.
+    - :violet[**Overview:**] Dataset, objectives, and how I approached the problem.
+    - :orange[**Model & Training Details:**] Pre-Trained architectures, transfer learning strategy, and training environment and setup.
+    - :green[**Performance & Results Overview:**] Evaluation Metrics per model per train/val/test set, visualizations, and comparison across the board.
+    - :blue[**Playground:**] A live interactive space where you can upload your own image, run inference across all models and compare predictions instantly.
     
     ###### :material/double_arrow: Just use the **sidebar on the left to jump between pages!**
     """)
