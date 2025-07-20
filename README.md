@@ -25,17 +25,17 @@ waste_classes = ["Cardboard", "Food Organics", "Glass", "Metal", "Miscellaneous 
   - Macro and Weighted Evaluations  
 
 
-## 🧭 Streamlit App Structure
+## Streamlit App Structure
 
 The app is organized into multiple interactive sections:
-- 🏠 **Home / Landing Page:** Introduction, tools used, highlights.
-- 🔎 **Overview:** Dataset, split details, objectives.
-- ⚙️ **Model & Training Details:** Architectures, strategy, hyperparameters, environment specs.
-- 📊 **Performance & Results:** Metrics, classification reports, AUC radar charts, comparison table.
-- 🎮 **Playground:** Upload your own image for inference and compare models.
+- **Home / Landing Page:** Introduction, tools used, highlights.
+- **Overview:** Dataset, split details, objectives.
+- **Model & Training Details:** Architectures, strategy, hyperparameters, environment specs.
+- **Performance & Results:** Metrics, classification reports, AUC radar charts, comparison table.
+- **Playground:** Upload your own image for inference and compare models.
 
 
-## 🖥️ Tech Stack
+## Tech Stack
 
 - Python 3.11.11
 - TensorFlow 2.18
@@ -44,7 +44,7 @@ The app is organized into multiple interactive sections:
 - Plotly 6.2.0
 
 
-## 📂 Project Structure
+## Project Structure
 ```
 .
 ├── pages/          # Modular Streamlit pages
@@ -57,7 +57,7 @@ The app is organized into multiple interactive sections:
 ```
 
 
-## 🛠️ Setup and Run Locally
+## Setup and Run Locally
 
 - **Clone the repository:**
 ```bash
